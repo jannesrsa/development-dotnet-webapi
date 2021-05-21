@@ -4,6 +4,7 @@ using DevelopmentDotnetWebApi;
 using DevelopmentDotnetWebApi.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Serilog;
 
 namespace FunctionalTests
 {
@@ -34,7 +35,8 @@ namespace FunctionalTests
                     .UseContentRoot(Path.GetDirectoryName(path))
                     .UseConfiguration(new ConfigurationHelper().Configuration)
                     .UseEnvironment("Development")
-                    .UseStartup<Startup>();
+                    .UseStartup<Startup>()
+                    .UseSerilog();
 
                 _testServer = new TestServer(hostBuilder);
                 return _testServer;

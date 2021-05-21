@@ -2,7 +2,7 @@
 {
     public class TasksScenariosBase
     {
-        private const string ApiUrlBase = "api";
+        private const string ApiUrlBase = "api/v1";
 
         public static class Get
         {

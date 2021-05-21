@@ -10,8 +10,16 @@ namespace DevelopmentDotnetWebApi.Serialization
     {
         public override bool CanConvert(Type typeToConvert)
         {
-            if (!typeToConvert.IsGenericType) return false;
-            if (typeToConvert.GenericTypeArguments[0] == typeof(string)) return false;
+            if (!typeToConvert.IsGenericType)
+            {
+                return false;
+            }
+
+            if (typeToConvert.GenericTypeArguments[0] == typeof(string))
+            {
+                return false;
+            }
+
             return typeToConvert.GetInterface("IDictionary") != null;
         }
 

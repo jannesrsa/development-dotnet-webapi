@@ -7,8 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DevelopmentDotnetWebApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion(Constants.Versions.V1)]
+    [Route("api/v{version:apiVersion}/tasks")]
+    [ApiExplorerSettings(IgnoreApi = false)]
+    [Consumes("application/json")]
+    [Produces("application/json")]
     public class TasksController : ControllerBase
     {
         private readonly TaskTrackerContext _context;

@@ -13,7 +13,7 @@ namespace DevelopmentDotnetWebApi.Serialization
         public override XmlSchema Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var xml = reader.GetString();
-            return DeserializeXmlSchema(xml);
+            return this.DeserializeXmlSchema(xml);
         }
 
         public override void Write(Utf8JsonWriter writer, XmlSchema value, JsonSerializerOptions options)

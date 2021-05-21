@@ -7,12 +7,16 @@ namespace DevelopmentDotnetWebApi.Helpers
 {
     public class ConfigurationHelper
     {
+        public const string SqliteConnectionStringKey = "SqliteConnectionString";
+
         public ConfigurationHelper()
         {
             this.Configuration = GetConfiguration();
         }
 
         public IConfiguration Configuration { get; }
+
+        public string SqliteConnectionString => this.Configuration.GetConnectionString(SqliteConnectionStringKey);
 
         public LoggerConfiguration ConfigureLogger()
         {
