@@ -62,12 +62,3 @@ jobs:
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)' 
         artifactName: 'development-dotnet-webapi'
-    
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'Azure - jannesrsa - GitHub'
-        appType: 'webAppLinux'
-        WebAppName: 'development-dotnet-webapi'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-        RuntimeStack: 'DOTNETCORE|5.0'
