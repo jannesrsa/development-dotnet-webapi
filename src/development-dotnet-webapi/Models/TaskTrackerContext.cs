@@ -7,7 +7,6 @@ namespace DevelopmentDotnetWebApi.Models
         public TaskTrackerContext(DbContextOptions<TaskTrackerContext> options)
             : base(options)
         {
-
         }
 
         public const string ConnectionString = "Filename=tasks.db"; //"Filename=:memory:"

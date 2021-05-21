@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AF54CBA7-4C9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "development-dotnet-webapi", "src\development-dotnet-webapi\development-dotnet-webapi.csproj", "{D893694E-C23F-4337-8602-59AB3DA235B2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A701B393-CE56-4BF8-A54D-C5D7B22939F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalTests", "tests\FunctionalTests\FunctionalTests.csproj", "{FAC1E9BE-7B50-42CB-8209-865FCA169C11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,12 +26,17 @@ Global
 		{D893694E-C23F-4337-8602-59AB3DA235B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D893694E-C23F-4337-8602-59AB3DA235B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D893694E-C23F-4337-8602-59AB3DA235B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC1E9BE-7B50-42CB-8209-865FCA169C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC1E9BE-7B50-42CB-8209-865FCA169C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC1E9BE-7B50-42CB-8209-865FCA169C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC1E9BE-7B50-42CB-8209-865FCA169C11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D893694E-C23F-4337-8602-59AB3DA235B2} = {AF54CBA7-4C9D-4D44-BEAF-EC292ADA1092}
+		{FAC1E9BE-7B50-42CB-8209-865FCA169C11} = {A701B393-CE56-4BF8-A54D-C5D7B22939F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F14EEFF-16F7-4AE3-86D5-45F9A9A5A4FA}
