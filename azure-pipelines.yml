@@ -49,3 +49,10 @@ jobs:
         codeCoverageTool: Cobertura
         summaryFileLocation: $(Build.SourcesDirectory)/coverage/reports/Cobertura.xml
         reportDirectory: '$(Build.SourcesDirectory)/coverage/reports'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: publish
+        publishWebProjects: True
+        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        zipAfterPublish: True
