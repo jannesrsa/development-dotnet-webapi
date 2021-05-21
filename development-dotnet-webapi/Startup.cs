@@ -1,6 +1,7 @@
 using DevelopmentDotnetWebApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,13 +14,13 @@ namespace DevelopmentDotnetWebApi
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TaskTrackerContext taskTrackerContext)
         {
             if (env.IsDevelopment())
             {
@@ -38,6 +39,8 @@ namespace DevelopmentDotnetWebApi
             {
                 endpoints.MapControllers();
             });
+
+            taskTrackerContext.Database.Migrate();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -45,11 +48,17 @@ namespace DevelopmentDotnetWebApi
         {
             services.AddControllers();
 
-            services.AddDbContext<TaskTrackerContext>((sp, options) =>
+            services.AddSingleton<SqliteConnection>((sp) =>
             {
                 var configuration = sp.GetRequiredService<IConfiguration>();
                 var sqliteDbConnectionString = configuration.GetConnectionString("SqliteConnectionString");
-                options.UseSqlite(sqliteDbConnectionString);
+                return new SqliteConnection(sqliteDbConnectionString);
+            });
+
+            services.AddDbContext<TaskTrackerContext>((sp, options) =>
+            {
+                var sqliteConnection = sp.GetRequiredService<SqliteConnection>();
+                options.UseSqlite(sqliteConnection);
             });
 
             services.AddSwaggerGen(c =>

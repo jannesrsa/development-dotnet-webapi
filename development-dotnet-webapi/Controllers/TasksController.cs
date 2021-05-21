@@ -25,13 +25,13 @@ namespace DevelopmentDotnetWebApi.Controllers
             var task = await _context.Tasks.FindAsync(id);
             if (task == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             _context.Tasks.Remove(task);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return this.NoContent();
         }
 
         // GET: api/Tasks/5
@@ -42,7 +42,7 @@ namespace DevelopmentDotnetWebApi.Controllers
 
             if (task == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             return task;
@@ -63,7 +63,7 @@ namespace DevelopmentDotnetWebApi.Controllers
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTask", new { id = task.Id }, task);
+            return this.CreatedAtAction("GetTask", new { id = task.Id }, task);
         }
 
         // PUT: api/Tasks/5
@@ -73,7 +73,7 @@ namespace DevelopmentDotnetWebApi.Controllers
         {
             if (id != task.Id)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
             _context.Entry(task).State = EntityState.Modified;
@@ -84,9 +84,9 @@ namespace DevelopmentDotnetWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TaskExists(id))
+                if (!this.TaskExists(id))
                 {
-                    return NotFound();
+                    return this.NotFound();
                 }
                 else
                 {
@@ -94,7 +94,7 @@ namespace DevelopmentDotnetWebApi.Controllers
                 }
             }
 
-            return NoContent();
+            return this.NoContent();
         }
 
         private bool TaskExists(int id)

@@ -10,13 +10,13 @@ namespace DevelopmentDotnetWebApi.Models
 
         }
 
-        private const string MemoryConnectionString = "Filename=:memory:"; //"Filename=:memory:"
+        public const string ConnectionString = "Filename=tasks.db"; //"Filename=:memory:"
 
         public DbSet<Task> Tasks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite(MemoryConnectionString);
+            options.UseSqlite(ConnectionString);
         }
     }
 
