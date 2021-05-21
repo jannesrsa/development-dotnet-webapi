@@ -50,7 +50,7 @@ jobs:
         summaryFileLocation: $(Build.SourcesDirectory)/coverage/reports/Cobertura.xml
 
     - task: DotNetCoreCLI@2
-      displayName: Publish DotNet WebProjects
+      displayName: DotNetCoreCLI publish
       inputs:
         command: publish
         publishWebProjects: True
@@ -58,6 +58,7 @@ jobs:
         zipAfterPublish: True
 
     - task: PublishPipelineArtifact@1
+      displayName: Publish Pipeline Artifact - development-dotnet-webapi
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)' 
         artifactName: 'development-dotnet-webapi'
