@@ -1,11 +1,13 @@
+using DevelopmentDotnetWebApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace development_dotnet_webapi
+namespace DevelopmentDotnetWebApi
 {
     public class Startup
     {
@@ -23,7 +25,7 @@ namespace development_dotnet_webapi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "development_dotnet_webapi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DevelopmentDotnetWebApi v1"));
             }
 
             app.UseHttpsRedirection();
@@ -42,9 +44,17 @@ namespace development_dotnet_webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<TaskTrackerContext>((sp, options) =>
+            {
+                var configuration = sp.GetRequiredService<IConfiguration>();
+                var sqliteDbConnectionString = configuration.GetConnectionString("SqliteConnectionString");
+                options.UseSqlite(sqliteDbConnectionString);
+            });
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "development_dotnet_webapi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DevelopmentDotnetWebApi", Version = "v1" });
             });
         }
     }
